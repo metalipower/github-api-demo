@@ -1,0 +1,9 @@
+<form>
+    <input ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
+    <button ng-click="ctrl.search()">Pesquisar</button>
+</form>
+<div class="container" ng-if="ctrl.user">
+    <card-user user="ctrl.user"></card-user>
+    <user-annotation username="ctrl.user.login"></user-annotation>
+    <user-repos username="ctrl.user.login"></user-repos>
+</div>

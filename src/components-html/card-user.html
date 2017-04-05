@@ -1,0 +1,10 @@
+<a href="{{$ctrl.user.html_url}}" target="_blank">
+    <div class="avatar">
+        <img src="{{$ctrl.user.avatar_url}}" alt="Avatar do {{$ctrl.user.name}} no Github" width="200" height="200">
+    </div>
+    <div class="information">
+        <h2>{{$ctrl.user.name}}</h2>
+        <h3 ng-bind="$ctrl.user.location"></h3>
+        <span class="repos">Repositórios: {{$ctrl.user.public_repos}}</span>
+    </div>
+</a>

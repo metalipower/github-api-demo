@@ -14,8 +14,12 @@ var config = {
         distLib: './www/lib',
         js: './src/js/**/*.js',
         scss: './src/scss/**/*.scss',
-        html: './src/views/**/*.html',
+        index: './src/index.html',
+        views: './src/views/**/*.html',
+        componentsHtml: './src/components-html/**/*.html',
         images: './src/img/**/*.*',
+        distViews: './www/views',
+        distcomponentsHtml: './www/components-html',
         distImg: './www/dist/img',
         distCss: './www/dist/css',
         distJs: './www/dist/js',
@@ -70,8 +74,15 @@ gulp.task('js', function(){
 });
 
 gulp.task('copy-html', function(){
-    return gulp.src(config.paths.html )
-        .pipe(gulp.dest(config.paths.dist))
+    gulp.src(config.paths.views)
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest(config.paths.distViews));
+
+    gulp.src(config.paths.componentsHtml)
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest(config.paths.distcomponentsHtml));
+
+    return gulp.src(config.paths.index )
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest(config.paths.dist))
         .pipe(bs.stream());
@@ -104,7 +115,7 @@ gulp.task('browser-sync', function() {
     gulp.watch(['src/js/**/*.js'], ['tests']);
     gulp.watch("src/scss/**/*.scss", ['sass']);
     gulp.watch("src/img/**/*.", ['copy-images']);
-    gulp.watch("src/views/*.html", ['copy-html']);
+    gulp.watch(["src/*.html", "src/views/**/*.html", "src/components-html/**/*.html"], ['copy-html']);
     gulp.watch("src/views/*.html").on('change', bs.reload);
 });
 
