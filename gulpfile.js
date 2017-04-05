@@ -3,7 +3,6 @@ var bs = require('browser-sync').create(); // create a browser sync instance.
 var concat = require('gulp-concat');
 var lint = require('gulp-eslint');
 var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
 var htmlmin = require('gulp-htmlmin');
 var cleanCSS = require('gulp-clean-css');
 var karma = require('gulp-karma');
@@ -66,7 +65,6 @@ gulp.task('js', function(){
     return gulp.src(config.paths.js )
         .pipe(concat('dist.js'))
         .pipe(gulp.dest(config.paths.distJs))
-        .pipe(uglify())
         .pipe(gulp.dest(config.paths.distJs))
         .pipe(bs.stream());
 });
