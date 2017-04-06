@@ -1,9 +1,9 @@
-<form>
-    <input ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
-    <button ng-click="ctrl.search()">Pesquisar</button>
+<form ng-submit="ctrl.search()">
+    <input ng-keypress="ctrl.cleanView()" ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
 </form>
-<div class="container" ng-if="ctrl.user">
+<div ng-if="ctrl.user">
     <card-user user="ctrl.user"></card-user>
     <user-annotation username="ctrl.user.login"></user-annotation>
-    <user-repos username="ctrl.user.login"></user-repos>
+    <user-repos username="ctrl.user.login" public-repos="ctrl.user.public_repos"></user-repos>
 </div>
+<div class="container" ng-if="ctrl.exibirMensagem404" ng-bind="ctrl.mensagem404"></div>

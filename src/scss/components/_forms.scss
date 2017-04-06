@@ -1,0 +1,25 @@
+input,
+textarea{
+  padding: 10px;
+  margin: 10px 0px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button{
+  background-color: $color4;
+  color: $color1;
+  border: none;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: all .3s;
+  &:hover{
+    background-color: lighten($color4, 5%);
+  }
+  &:disabled{
+    opacity: .5;
+    &:hover{
+      background-color: $color4;
+    }
+  }
+}

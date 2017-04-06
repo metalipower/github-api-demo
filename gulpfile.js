@@ -112,11 +112,11 @@ gulp.task('browser-sync', function() {
         }
     });
     gulp.watch("src/js/**/*.js", ['lint', 'js']);
-    gulp.watch(['src/js/**/*.js'], ['tests']);
+    //gulp.watch(['src/js/**/*.js'], ['tests']);
     gulp.watch("src/scss/**/*.scss", ['sass']);
     gulp.watch("src/img/**/*.", ['copy-images']);
     gulp.watch(["src/*.html", "src/views/**/*.html", "src/components-html/**/*.html"], ['copy-html']);
     gulp.watch("src/views/*.html").on('change', bs.reload);
 });
 
-gulp.task('default',['lint','tests','js','browser-sync','sass', 'copy-html', 'copy-images']);
+gulp.task('default',['lint', 'js','browser-sync','sass', 'copy-html', 'copy-images']);

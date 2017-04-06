@@ -3,3 +3,5 @@
         <a href="" ng-bind="repo.name"></a>
     </li>
 </ul>
+<button ng-click="$ctrl.pageBack()" ng-disabled="$ctrl.page === 1">Anterior</button>
+<button ng-click="$ctrl.pageNext()" ng-disabled="$ctrl.page === $ctrl.totalPages">Próximo</button>

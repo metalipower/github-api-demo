@@ -1,10 +1,11 @@
-<a href="{{$ctrl.user.html_url}}" target="_blank">
+<a href="{{$ctrl.user.html_url}}" target="_blank" title="Abrir Github deste usuário">
     <div class="avatar">
         <img src="{{$ctrl.user.avatar_url}}" alt="Avatar do {{$ctrl.user.name}} no Github" width="200" height="200">
     </div>
     <div class="information">
-        <h2>{{$ctrl.user.name}}</h2>
+        <small>{{$ctrl.user.login}} - {{$ctrl.user.public_repos}} repositório(s)</small>
+        <h2 ng-bind="$ctrl.user.name"></h2>
+        <hr>
         <h3 ng-bind="$ctrl.user.location"></h3>
-        <span class="repos">Repositórios: {{$ctrl.user.public_repos}}</span>
     </div>
 </a>

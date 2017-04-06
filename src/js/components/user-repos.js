@@ -1,19 +1,41 @@
 app.component('userRepos', {
     templateUrl: 'components-html/user-repos.html',
     bindings: {
-        username: '='
+        username: '=',
+        publicRepos: '='
     },
     controller: function(githubServices){
         var ctrl = this;
+        var limit = 2;
+        ctrl.page = 1;
+        ctrl.totalPages;
         ctrl.mensagem404 = 'Não foi possível obter a lista de repositórios ou esse usuário não tem repositórios ainda.';
-
-        githubServices.findUserRepos(ctrl.username, 0, 1, function (status, repos) {
-            if (status === 404) {
-                ctrl.showMensagem404 = true;
+        ctrl.$onInit = function(){
+            if(ctrl.publicRepos === 0){
+                ctrl.exibirMensagemRepos404 = true;
                 return;
             }
-            ctrl.repos = repos;
-        });
-
+            ctrl.exibirMensagemRepos404 = false;
+            ctrl.totalPages = Math.ceil(ctrl.publicRepos / limit);
+            findUserRepos();
+        };
+        var findUserRepos = function(username){
+            githubServices.findUserRepos(ctrl.username, ctrl.page, limit, function (status, repos) {
+                if (status === 404) {
+                    ctrl.exibirMensagemRepos404 = true;
+                    return;
+                }
+                ctrl.exibirMensagemRepos404 = false;
+                ctrl.repos = repos;
+            });
+        };
+        ctrl.pageNext = function(){
+            ctrl.page++;
+            findUserRepos();
+        };
+        ctrl.pageBack = function(){
+            ctrl.page--;
+            findUserRepos();
+        };
     }
 });
