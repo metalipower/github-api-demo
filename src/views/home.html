@@ -1,5 +1,5 @@
 <form ng-submit="ctrl.search()">
-    <input ng-keyup="ctrl.cleanView()" ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
+    <input ng-keypress="ctrl.cleanView()" ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
 </form>
 <div ng-if="ctrl.user">
     <card-user user="ctrl.user"></card-user>
