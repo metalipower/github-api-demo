@@ -6,7 +6,7 @@ app.component('userRepos', {
     },
     controller: function(githubServices){
         var ctrl = this;
-        var limit = 2;
+        ctrl.limit = 5;
         ctrl.page = 1;
         ctrl.totalPages;
         ctrl.mensagem404 = 'Não foi possível obter a lista de repositórios ou esse usuário não tem repositórios ainda.';
@@ -16,11 +16,11 @@ app.component('userRepos', {
                 return;
             }
             ctrl.exibirMensagemRepos404 = false;
-            ctrl.totalPages = Math.ceil(ctrl.publicRepos / limit);
+            ctrl.totalPages = Math.ceil(ctrl.publicRepos / ctrl.limit);
             findUserRepos();
         };
         var findUserRepos = function(username){
-            githubServices.findUserRepos(ctrl.username, ctrl.page, limit, function (status, repos) {
+            githubServices.findUserRepos(ctrl.username, ctrl.page, ctrl.limit, function (status, repos) {
                 if (status === 404) {
                     ctrl.exibirMensagemRepos404 = true;
                     return;

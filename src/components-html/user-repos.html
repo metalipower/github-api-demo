@@ -1,7 +1,12 @@
-<ul ng-if="$ctrl.repos.length > 0">
-    <li ng-repeat="repo in $ctrl.repos">
-        <a href="" ng-bind="repo.name"></a>
-    </li>
-</ul>
-<button ng-click="$ctrl.pageBack()" ng-disabled="$ctrl.page === 1">Anterior</button>
-<button ng-click="$ctrl.pageNext()" ng-disabled="$ctrl.page === $ctrl.totalPages">Próximo</button>
+<h2>Repositórios:</h2>
+<card-repo
+    ng-if="$ctrl.repos.length > 0"
+    ng-repeat="repo in $ctrl.repos"
+    repo="repo">
+</card-repo>
+<pager ng-if="$ctrl.publicRepos > $ctrl.limit"
+       page-back="$ctrl.pageBack"
+       page-next="$ctrl.pageNext"
+       page="$ctrl.page"
+       total-pages="$ctrl.totalPages">
+</pager>
