@@ -3,7 +3,7 @@
 </form>
 <div ng-if="ctrl.user">
     <card-user user="ctrl.user"></card-user>
-    <user-annotation username="ctrl.user.login"></user-annotation>
+    <user-annotation user-id="ctrl.user.id"></user-annotation>
     <user-repos username="ctrl.user.login" public-repos="ctrl.user.public_repos"></user-repos>
 </div>
 <div class="container" ng-if="ctrl.exibirMensagem404" ng-bind="ctrl.mensagem404"></div>

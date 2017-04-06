@@ -1,4 +1,4 @@
-describe("Services tests", function() {
+describe("Github Services tests", function() {
     var baseUrl = 'https://api.github.com'
     var $httpBackend;
     var githubServices;

@@ -1,3 +1,8 @@
 <h2>Anotações:</h2>
 <small>O salvamento das suas anotações é automático</small>
-<textarea></textarea>
+<textarea
+        id="user-annotation"
+        ng-model="$ctrl.userAnnotation"
+        ng-keyup="$ctrl.updateAnnotation()"
+        placeholder="Digite suas anotações">
+</textarea>
