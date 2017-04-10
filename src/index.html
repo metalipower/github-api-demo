@@ -6,29 +6,27 @@
     <meta name="description" content="Github API Demo">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="theme-color" content="#429ea6">
-
     <title>Github API Demo</title>
-
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Raleway:200,300,400" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/styles.css">
 </head>
 <body ng-app="githubApiDemo" ng-cloak>
-<header class="header" ng-controller="headerCtrl as ctrl">
-    <h1>Github API Demo</h1>
-    <a href="/"
-        ng-show="ctrl.authService.isAuthenticated()"
-        ng-click="ctrl.authService.logout()"
-        class="btn-logout">
-        Sair
-    </a>
-</header>
-<section class="container" ui-view></section>
-<script src="lib/angular.min.js"></script>
-<script src="lib/lock.min.js"></script>
-<script src="lib/auth0.min.js"></script>
-<script src="lib/angular-lock.min.js"></script>
-<script src="lib/angular-jwt.min.js"></script>
-<script src="lib/angular-ui-router.min.js"></script>
-<script src="dist/js/dist.js"></script>
+    <header class="header" ng-controller="headerCtrl as ctrl">
+        <h1>Github API Demo</h1>
+        <a href="#!/"
+            ng-show="ctrl.authService.isAuthenticated()"
+            ng-click="ctrl.authService.logout()"
+            class="btn-logout">
+            Sair
+        </a>
+    </header>
+    <section class="container" ui-view></section>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/lock.min.js"></script>
+    <script src="lib/auth0.min.js"></script>
+    <script src="lib/angular-lock.min.js"></script>
+    <script src="lib/angular-jwt.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="dist/js/dist.js"></script>
 </body>
 </html>
