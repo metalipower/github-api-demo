@@ -1,7 +1,8 @@
 app.controller('homeCtrl', ['githubServices', function(githubServices){
     var ctrl = this;
-    ctrl.mensagem404 = '404 - Nenhum usuário encontrado';
     ctrl.search = function(){
+        //Remove focus of input to hide keyboard on mobile devices
+        document.querySelector('#username').blur();
         githubServices.findUser(ctrl.username, function(status, user){
             if(status === 404){
                 ctrl.user = '';

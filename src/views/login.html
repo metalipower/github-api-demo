@@ -1,1 +1,13 @@
-<button ng-click="ctrl.authService.login()">Autentique-se com Auth0</button>
+<div class="login">
+    <h2>Seja bem vindo</h2>
+    <p ng-show="!ctrl.authService.isAuthenticated()">Para se autenticar, é necessário que você tenha uma conta no <strong>Github</strong> ou no <strong>Auth0</strong>,
+        clique no botão abaixo para entrar:
+    </p>
+    <p ng-show="ctrl.authService.isAuthenticated()">
+        Você já está autenticado, clique ou toque no botão <strong>Sair</strong> para dizer adeus.
+    </p>
+    <button
+            ng-show="!ctrl.authService.isAuthenticated()"
+            ng-click="ctrl.authService.login()">Autentique-se com Auth0
+    </button>
+</div>

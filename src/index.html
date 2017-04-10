@@ -13,8 +13,14 @@
     <link rel="stylesheet" href="dist/css/styles.css">
 </head>
 <body ng-app="githubApiDemo" ng-cloak>
-<header class="header">
+<header class="header" ng-controller="headerCtrl as ctrl">
     <h1>Github API Demo</h1>
+    <a href="/"
+        ng-show="ctrl.authService.isAuthenticated()"
+        ng-click="ctrl.authService.logout()"
+        class="btn-logout">
+        Sair
+    </a>
 </header>
 <section class="container" ui-view></section>
 <script src="lib/angular.min.js"></script>

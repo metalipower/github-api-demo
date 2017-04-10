@@ -1,9 +1,12 @@
 <form ng-submit="ctrl.search()">
-    <input ng-keypress="ctrl.cleanView()" ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
+    <input id="username" ng-keypress="ctrl.cleanView()" ng-model="ctrl.username" type="search" placeholder="Digite o username para pesquisar">
 </form>
 <div ng-if="ctrl.user">
     <card-user user="ctrl.user"></card-user>
     <user-annotation user-id="ctrl.user.id"></user-annotation>
     <user-repos ng-if="ctrl.user.public_repos > 0" username="ctrl.user.login" public-repos="ctrl.user.public_repos"></user-repos>
 </div>
-<div class="container" ng-if="ctrl.exibirMensagem404" ng-bind="ctrl.mensagem404"></div>
+<div class="container" ng-if="ctrl.exibirMensagem404">
+    <h2>404 =(</h2>
+    <p>Parece que o usuário pesquisado não existe no Github</p>
+</div>

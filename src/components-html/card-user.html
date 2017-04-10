@@ -1,6 +1,6 @@
 <a href="{{$ctrl.user.html_url}}" target="_blank" title="Abrir Github deste usuário">
     <div class="avatar">
-        <img src="{{$ctrl.user.avatar_url}}" alt="Avatar do {{$ctrl.user.name}} no Github" width="200" height="200">
+        <img ng-src="{{$ctrl.user.avatar_url}}" alt="Avatar do {{$ctrl.user.name}} no Github" width="200" height="200">
     </div>
     <div class="information">
         <small>{{$ctrl.user.login}} - {{$ctrl.user.public_repos}} repositório(s)</small>

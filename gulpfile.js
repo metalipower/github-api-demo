@@ -5,6 +5,7 @@ var lint = require('gulp-eslint');
 var sass = require('gulp-sass');
 var htmlmin = require('gulp-htmlmin');
 var cleanCSS = require('gulp-clean-css');
+var uglify = require('gulp-uglify');
 var karma = require('gulp-karma');
 
 var config = {
@@ -61,14 +62,12 @@ gulp.task('tests', function() {
 });
 
 gulp.task('js', function(){
-
     /* Copy lib folder */
     gulp.src(config.paths.lib)
         .pipe(gulp.dest(config.paths.distLib));
-
     return gulp.src(config.paths.js )
         .pipe(concat('dist.js'))
-        .pipe(gulp.dest(config.paths.distJs))
+        .pipe(uglify({mangle: false}))
         .pipe(gulp.dest(config.paths.distJs))
         .pipe(bs.stream());
 });
@@ -112,11 +111,11 @@ gulp.task('browser-sync', function() {
         }
     });
     gulp.watch("src/js/**/*.js", ['lint', 'js']);
-    //gulp.watch(['src/js/**/*.js'], ['tests']);
+    gulp.watch(['src/js/**/*.js'], ['tests']);
     gulp.watch("src/scss/**/*.scss", ['sass']);
     gulp.watch("src/img/**/*.", ['copy-images']);
     gulp.watch(["src/*.html", "src/views/**/*.html", "src/components-html/**/*.html"], ['copy-html']);
     gulp.watch("src/views/*.html").on('change', bs.reload);
 });
 
-gulp.task('default',['lint', 'js','browser-sync','sass', 'copy-html', 'copy-images']);
+gulp.task('default',['lint', 'js', 'tests', 'sass', 'copy-html', 'copy-images', 'browser-sync']);

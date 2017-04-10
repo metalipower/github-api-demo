@@ -1,6 +1,6 @@
 var app = angular.module('githubApiDemo', ['auth0.lock', 'angular-jwt', 'ui.router']);
 
-app.config(function($stateProvider, lockProvider, $urlRouterProvider) {
+app.config(function($stateProvider, lockProvider, $urlRouterProvider, jwtOptionsProvider) {
 
     $stateProvider
         .state('login', {
@@ -13,7 +13,10 @@ app.config(function($stateProvider, lockProvider, $urlRouterProvider) {
             url: '/home',
             controller: 'homeCtrl',
             templateUrl: 'views/home.html',
-            controllerAs: 'ctrl'
+            controllerAs: 'ctrl',
+            data:{
+                requiresLogin: true
+            }
     });
 
     lockProvider.init({
@@ -24,10 +27,27 @@ app.config(function($stateProvider, lockProvider, $urlRouterProvider) {
         }
     });
 
+    jwtOptionsProvider.config({
+        tokenGetter: function() {
+            return localStorage.getItem('id_token');
+        }
+    });
+
     $urlRouterProvider.otherwise('/');
 
-}).run(['$rootScope', 'authService', 'lock', function($rootScope, authService, lock) {
-    $rootScope.authService = authService;
+}).run(['$rootScope', 'authService', 'lock', '$state', function($rootScope, authService, lock, $state) {
     authService.registerAuthenticationListener();
     lock.interceptHash();
+    $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+        if (toState.data && toState.data.requiresLogin === true) {
+            if (!authService.isAuthenticated()) {
+                $state.go('login', { toState: toState, toParams: toParams });
+                e.preventDefault();
+            }
+        }
+        if(toState.name === 'login' && authService.isAuthenticated()) {
+            $state.go('home', {toState: toState, toParams: toParams});
+            e.preventDefault();
+        }
+    });
 }]);
